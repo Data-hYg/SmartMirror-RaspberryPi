@@ -15,7 +15,7 @@ var config = {
             // if you want a different lang for the weather that what is set above, change it here
             lang: 'de',
             //Here comes your personal (free) APPID from openweathermap.org/
-            APPID: 'a83921bb41ee5d832e98a4bfdf24043d'
+            APPID: '/*Api goes here*/'
         }
     },
     compliments: {
@@ -69,15 +69,15 @@ var config = {
 		displaySymbol: true,
 		defaultSymbol: 'calendar', // Fontawsome Symbol see http://fontawesome.io/cheatsheet/
         urls: [
-                //{
+               {
                 	//Just german holydays
-		//	 symbol: 'feiertage',
-		//	 url: "http://www.ifeiertage.de/bw-s.ics"
-                //}
+			 symbol: 'feiertage',
+			 url: "http://www.ifeiertage.de/bw-s.ics"
+                }
                 
                 {
                     symbol: 'mein Kalender',
-                    url: 'http://sharing.calendar.live.com/calendar/private/5133e446-4393-47af-973c-01922dc7dcf3/11b44e63-9830-42d4-98b8-e7695e2d0006/cid-63d3a044e619ca72/calendar.ics'
+                    url: '//Replace that with the url of your calender'
                 }            
             ]
     },

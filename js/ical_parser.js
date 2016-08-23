@@ -19,13 +19,14 @@ function ical_parser(feed_url, callback){
 	 * @param callback Function to call on completion.
 	 */
 	this.loadFile = function(url, callback){
-		//Create request object
+            //Create request object
 		try {xmlhttp = window.XMLHttpRequest?new XMLHttpRequest(): new ActiveXObject("Microsoft.XMLHTTP");}  catch (e) { }
 		//Grab file
 		xmlhttp.onreadystatechange = function(){
 			if ((xmlhttp.readyState == 4) && (xmlhttp.status == 200)) {
 				//On success, run callback.
 				callback(xmlhttp.responseText);
+                                console.log(xmlhttp.responseText);
 			}
 		}
 		xmlhttp.open("GET", url, true);

@@ -120,8 +120,8 @@ weather.updateWeatherForecast = function () {
                         var _todayData = data.list[0];
                         // + '<td>'+ _forecast.weather[0].description + '</td>';
                         var _todayHtml = '<span>' + 
-                                        '<span style ="color : red"> &uarr;</span> ' + this.roundValue(_todayData.temp.max) + '°C' +
-                                        '<span style ="color : cyan">&darr;</span> ' + this.roundValue(_todayData.temp.min) + '°C' +
+                                        '<span style ="color : red"> &uarr;</span> ' + this.roundValue(_todayData.temp.max) + '°C' + '&nbsp&nbsp ' +
+                                        '<span style ="color : cyan"> &darr;</span> ' + this.roundValue(_todayData.temp.min) + '°C' +
                                         '<br>'+ _todayData.weather[0].description
                             
                             + '</span>    ';
@@ -146,7 +146,7 @@ weather.updateWeatherForecast = function () {
                                 
 				_forecastHtml += '<td style="opacity:' + _opacity + '" class="day">' + moment(_forecast.dt, 'X').format('ddd') + '</td>';
 				_forecastHtml2 += '<td style="opacity:' + _opacity + '" class="icon-small ' + this.iconTable[_forecast.weather[0].icon] + '"></td>';
-				_forecastHtml3 += '<td style="opacity:' + _opacity + '" class="temp-max">' + this.roundValue(_forecast.temp.max) + '</td>';
+				_forecastHtml3 += '<td style="opacity:' + _opacity + '" class="temp-max">' + this.roundValue(_forecast.temp.max) + '&nbsp </td>';
 				_forecastHtml4 += '<td style="opacity:' + _opacity + '" class="temp-min">' + this.roundValue(_forecast.temp.min) + '</td>';
 
 				_opacity -= 0.12;

@@ -6,7 +6,7 @@ var calendar = {
 	fadeInterval: 1000,
 	intervalId: null,
 	dataIntervalId: null,
-	maximumEntries: config.calendar.maximumEntries || 10,
+	maximumEntries: config.calendar.maximumEntries || 8,
 	calendarUrl: (typeof config.calendar.urls == 'undefined') ? config.calendar.url : config.calendar.urls[0].url,
 	calendarPos: 0,
 	defaultSymbol: config.calendar.defaultSymbol || 'none',
@@ -14,13 +14,13 @@ var calendar = {
 	displaySymbol: (typeof config.calendar.displaySymbol == 'undefined') ? false : config.calendar.displaySymbol,
 	shortRunningText: 'still',
 	longRunningText: 'until'
-}
+};
 
 calendar.processEvents = function (url, events) {
 	tmpEventList = [];
 	var eventListLength = this.eventList.length;
 	for (var i = 0; i < eventListLength; i++) {
-		if (this.eventList[i]['url'] != url) {
+		if (this.eventList[i]['url'] !== url) {
 			tmpEventList.push(this.eventList[i]);
 		}
 	}
@@ -60,7 +60,8 @@ calendar.processEvents = function (url, events) {
 			var endSeconds = moment(e.DTEND).diff(moment(), 'seconds');
 			var endDate = moment(e.DTEND);
 		} else {
-			var days = moment(e.startDate).diff(moment(), 'days');
+			var startTime = e.DTSTART;
+                        var days = moment(e.startDate).diff(moment(), 'days');
 			var seconds = moment(e.startDate).diff(moment(), 'seconds');
 			var startDate = moment(e.startDate);
 			var endDays = moment(e.endDate).diff(moment(), 'days');
@@ -76,7 +77,7 @@ calendar.processEvents = function (url, events) {
 				var time_string = moment(startDate).calendar()
 			}
 			if (!e.RRULE) {
-				this.eventList.push({'description':e.SUMMARY,'seconds':seconds,'days':time_string,'url': url, symbol: this.calendarSymbol});
+				this.eventList.push({'description':e.SUMMARY,'seconds':seconds,'days':time_string, 'url': url, symbol: this.calendarSymbol});
 			}
 			e.seconds = seconds;
 		} else if  (endSeconds > 0) {
@@ -100,7 +101,7 @@ calendar.processEvents = function (url, events) {
 			var oneYear = new Date();
 			oneYear.setFullYear(oneYear.getFullYear() + 1);
 
-			var dates = rule.between(new Date(), oneYear, true, function (date, i){return i < 10;});
+			var dates = rule.between(new Date(), oneYear, true, function (date, i){return i < 8;});
 			for (date in dates) {
 				var dt = new Date(dates[date]);
 				var days = moment(dt).diff(moment(), 'days');
@@ -139,7 +140,7 @@ calendar.updateData = function (callback) {
 			// Loading all Calendars in parallel does not work, load them one by one.
 			setTimeout(function () {
 				this.updateData(this.updateCalendar.bind(this));
-			}.bind(this), 10);
+			}.bind(this), 8);
 		}
 		if (typeof config.calendar.urls !== 'undefined') {
 			this.calendarUrl = config.calendar.urls[this.calendarPos].url;
@@ -148,7 +149,7 @@ calendar.updateData = function (callback) {
 
 	}.bind(this));
 
-}
+};
 
 calendar.updateCalendar = function (eventList) {
         var _is_new = true;
@@ -159,7 +160,8 @@ calendar.updateCalendar = function (eventList) {
 	opacity = 1;
 
 	for (var i in eventList) {
-		var e = eventList[i];
+		var e = eventList[i];    
+                    
 		var row = $('<tr/>').attr('id', 'event'+i).css('opacity',opacity).addClass('event');
 		if (this.displaySymbol) {
 			row.append($('<td/>').addClass('fa').addClass('fa-'+e.symbol).addClass('calendar-icon'));
@@ -174,7 +176,7 @@ calendar.updateCalendar = function (eventList) {
 		}
 		table.append(row);
 
-		opacity -= 1 / eventList.length;
+		opacity -= 0.12;
 	}
 	if (_is_new) {
 		$(this.calendarLocation).updateWithText(table, this.fadeInterval);
@@ -194,4 +196,4 @@ calendar.init = function () {
 		this.updateData(this.updateCalendar.bind(this));
 	}.bind(this), this.updateDataInterval);
 
-}
+};

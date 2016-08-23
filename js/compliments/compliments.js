@@ -28,11 +28,10 @@ compliments.updateCompliment = function () {
 	var hour = moment().hour();        
         var day = moment().weekday();
         
-
 	// In the followign if statement we use .slice() on the
 	// compliments array to make a copy by value. 
 	// This way the original array of compliments stays in tact.
-        if (day === 6 || day === 7) {
+        if (day === 5 || day === 6) {
             
             if (hour >= 5 && hour < 12) {
 		// weekend Morning compliments
@@ -60,7 +59,7 @@ compliments.updateCompliment = function () {
             } else if (hour >= 12 && hour <= 17) {
 		// Afternoon compliments
 		_list = compliments.complimentList['afternoon'].slice();
-            } else if (hour >= 18 && hour < 1) {
+            } else if (hour >= 18 || hour < 1) {
 		// Evening compliments
 		_list = compliments.complimentList['evening'].slice();
             } else if (hour >= 1 && hour < 5){

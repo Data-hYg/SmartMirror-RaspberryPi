@@ -65,16 +65,21 @@ var config = {
         ]        
     },
     calendar: {
-        maximumEntries: 10, // Total Maximum Entries
+        maximumEntries: 9, // Total Maximum Entries
 		displaySymbol: true,
 		defaultSymbol: 'calendar', // Fontawsome Symbol see http://fontawesome.io/cheatsheet/
         urls: [
-                {
+                //{
                 	//Just german holydays
-			 symbol: 'feiertage',
-			 url: "http://www.ifeiertage.de/bw-s.ics"
-                }
-		]
+		//	 symbol: 'feiertage',
+		//	 url: "http://www.ifeiertage.de/bw-s.ics"
+                //}
+                
+                {
+                    symbol: 'mein Kalender',
+                    url: 'http://sharing.calendar.live.com/calendar/private/5133e446-4393-47af-973c-01922dc7dcf3/11b44e63-9830-42d4-98b8-e7695e2d0006/cid-63d3a044e619ca72/calendar.ics'
+                }            
+            ]
     },
     news: {
     	//NewYork Times artikels
